@@ -1,0 +1,108 @@
+Validación
+// Clientes
+db.createCollection("clientes", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nombre", "correo"],
+      properties: {
+        nombre: { bsonType: "string" },
+        correo: { bsonType: "string" },
+        reservas: { bsonType: "array" }
+      }
+    }
+  }
+});
+
+// Hoteles
+db.createCollection("hoteles", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nombre", "ciudad"],
+      properties: {
+        nombre: { bsonType: "string" },
+        ciudad: { bsonType: "string" },
+        reseñas: { bsonType: "array" }
+      }
+    }
+  }
+});
+
+// Reservas
+db.createCollection("reservas", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["cliente_id", "hotel_id", "fecha_entrada", "fecha_salida"],
+      properties: {
+        cliente_id: { bsonType: "string" },
+        hotel_id: { bsonType: "string" },
+        fecha_entrada: { bsonType: "date" },
+        fecha_salida: { bsonType: "date" },
+        estado: { bsonType: "string" }
+      }
+    }
+  }
+});
+
+// Reseñas
+db.createCollection("reseñas", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["cliente_id", "hotel_id", "calificacion", "texto"],
+      properties: {
+        cliente_id: { bsonType: "string" },
+        hotel_id: { bsonType: "string" },
+        calificacion: { bsonType: "int", minimum: 1, maximum: 5 },
+        texto: { bsonType: "string" },
+        fecha: { bsonType: "date" }
+      }
+    }
+  }
+});
+
+// RespuestasAdministrador
+db.createCollection("respuestasAdministrador", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["admin_id", "texto", "fecha"],
+      properties: {
+        admin_id: { bsonType: "string" },
+        texto: { bsonType: "string" },
+        fecha: { bsonType: "date" }
+      }
+    }
+  }
+});
+
+// VotosUtilidad
+db.createCollection("votosUtilidad", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["reseña_id", "cliente_id", "fecha"],
+      properties: {
+        reseña_id: { bsonType: "string" },
+        cliente_id: { bsonType: "string" },
+        fecha: { bsonType: "date" }
+      }
+    }
+  }
+});
+
+// Ciudades
+db.createCollection("ciudades", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nombre"],
+      properties: {
+        nombre: { bsonType: "string" },
+        hoteles: { bsonType: "array" }
+      }
+    }
+  }
+});

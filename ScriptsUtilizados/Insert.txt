@@ -1,0 +1,44 @@
+Insert
+// 1. Ciudades
+db.ciudades.insertMany([
+  { _id: "ciudad001", nombre: "Bogotá", hoteles: ["hotel001", "hotel002"] },
+  { _id: "ciudad002", nombre: "Medellín", hoteles: ["hotel003"] }
+]);
+
+// 2. Clientes
+db.clientes.insertMany([
+  { _id: "cliente001", nombre: "Juan Pérez", correo: "juan@mail.com", reservas: ["reserva1001", "reserva1002"], reseñas: ["reseña5001", "reseña5002"], votosEmitidos: ["voto9001"] },
+  { _id: "cliente002", nombre: "Ana Gómez", correo: "ana@mail.com", reservas: ["reserva1003"], reseñas: [], votosEmitidos: ["voto9002"] },
+  { _id: "cliente003", nombre: "Carlos Ruiz", correo: "carlos@mail.com", reservas: [], reseñas: [], votosEmitidos: [] }
+]);
+
+// 3. Hoteles
+db.hoteles.insertMany([
+  { _id: "hotel001", nombre: "Dann Bogotá", ciudad: "Bogotá", reservas: ["reserva1001"], reseñas: ["reseña5001", "reseña5002"] },
+  { _id: "hotel002", nombre: "Dann Medellín", ciudad: "Bogotá", reservas: ["reserva1002"], reseñas: [] },
+  { _id: "hotel003", nombre: "Alpes Medellín", ciudad: "Medellín", reservas: ["reserva1003"], reseñas: [] }
+]);
+
+// 4. Reservas
+db.reservas.insertMany([
+  { _id: "reserva1001", cliente_id: "cliente001", hotel_id: "hotel001", estado: "completada", fecha_entrada: new Date("2026-05-10"), fecha_salida: new Date("2026-05-15"), reseña: "reseña5001" },
+  { _id: "reserva1002", cliente_id: "cliente001", hotel_id: "hotel002", estado: "completada", fecha_entrada: new Date("2026-06-01"), fecha_salida: new Date("2026-06-05"), reseña: "reseña5002" },
+  { _id: "reserva1003", cliente_id: "cliente002", hotel_id: "hotel003", estado: "completada", fecha_entrada: new Date("2026-07-01"), fecha_salida: new Date("2026-07-04") }
+]);
+
+// 5. Reseñas
+db.reseñas.insertMany([
+  { _id: "reseña5001", reserva_id: "reserva1001", cliente_id: "cliente001", hotel_id: "hotel001", calificacion: 4, texto: "Muy buen servicio", fecha: new Date("2026-05-10"), respuestaAdministrador: "respuesta001", votosUtilidad: ["voto9001"] },
+  { _id: "reseña5002", reserva_id: "reserva1002", cliente_id: "cliente001", hotel_id: "hotel002", calificacion: 5, texto: "Excelente experiencia", fecha: new Date("2026-06-05") }
+]);
+
+// 6. RespuestasAdministrador
+db.respuestasAdministrador.insertMany([
+  { _id: "respuesta001", reseña_id: "reseña5001", admin_id: "admin01", texto: "Gracias por tu comentario, seguimos mejorando.", fecha: new Date("2026-05-11") }
+]);
+
+// 7. VotosUtilidad
+db.votosUtilidad.insertMany([
+  { _id: "voto9001", reseña_id: "reseña5001", cliente_id: "cliente002", fecha: new Date("2026-05-11") },
+  { _id: "voto9002", reseña_id: "reseña5001", cliente_id: "cliente003", fecha: new Date("2026-05-12") }
+]);

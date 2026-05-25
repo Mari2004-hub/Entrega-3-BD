@@ -1,0 +1,9 @@
+Creación
+db.createCollection("clientes");
+db.createCollection("hoteles");
+db.createCollection("reservas");
+db.createCollection("reseñas");
+db.createCollection("respuestasAdministrador");
+db.createCollection("votosUtilidad");
+db.createCollection("ciudades");
+
